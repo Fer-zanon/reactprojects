@@ -11,7 +11,7 @@ export default function Products({CategoryId, addBuy})
         }
         getProducts();
     }, [CategoryId])
-    
+
     return(
         <div>
             <ul>
@@ -27,13 +27,13 @@ const products = [
     {CategoryId: 1, name: "Jaguar"},
     {CategoryId: 1, name: "Psx"},
     {CategoryId: 1, name: "Xbox"},
-  
+
     {CategoryId: 2, name: "joystick"},
     {CategoryId: 2, name: "keyboard"},
     {CategoryId: 2, name: "mouse"},
     {CategoryId: 2, name: "headphones"},
     {CategoryId: 2, name: "monitors"},
-  
+
     {CategoryId: 3, name: "motherboard"},
     {CategoryId: 3, name: "processors"},
     {CategoryId: 3, name: "ram"},

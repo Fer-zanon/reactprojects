@@ -5,7 +5,6 @@ import SideNav from './main/SideNav';
 import Footer from './main/Footer';
 import Products from "./pages/Products";
 import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 
 function App() {
   const [CategoryId, setCategoryId] = useState(1);
@@ -23,11 +22,11 @@ function App() {
     setBuyedProducts(buyedProducts => [...buyedProducts, products]);
     console.log("products %o", buyedProducts)
   }
-  
+
   return (
     <div className={styles.application}>
       <Router>
-        <Header title={categorySelected.map(x => x.CategoryName)}></Header>
+        <Header title={categorySelected.map(x => x.CategoryName)} qttyProducts={buyedProducts.length}></Header>
         <SideNav links={categories} click={getCategoryId}></SideNav>
         <Products CategoryId={CategoryId} addBuy={addBuy}></Products>
         <Footer></Footer>
