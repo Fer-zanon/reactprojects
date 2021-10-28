@@ -11,7 +11,7 @@ export default function Products({CategoryId, addBuy})
         }
         getProducts();
     }, [CategoryId])
-
+    
     return(
         <div>
             <ul>
