@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import BuyButton from "./BuyButton";
-import Header from "../../main/Header";
 
-export default function Products({CategoryId})
+export default function Products({CategoryId, addBuy})
 {
     const [productsSelected, setProductsSelected] = useState([]);
-    const [productsBuy, setProductsBuyed] = useState([]);
 
     useEffect(()=>{
         function getProducts(){
@@ -14,19 +12,10 @@ export default function Products({CategoryId})
         getProducts();
     }, [CategoryId])
     
-    useEffect(()=>{
-        <Header qttyProducts= {productsBuy.length}></Header>
-    }, [productsBuy.length])
-
-    function addProduct(product)
-    {
-        setProductsBuyed(productsBuy => [...productsBuy, product]);
-    }
-    
     return(
         <div>
             <ul>
-                {productsSelected.map(x => <li key={x.name}>{x.name}<BuyButton press={() => addProduct(x) }></BuyButton></li> )}
+                {productsSelected.map(x => <li key={x.name}>{x.name}<BuyButton press={() => addBuy(x) }></BuyButton></li> )}
             </ul>
         </div>
     )

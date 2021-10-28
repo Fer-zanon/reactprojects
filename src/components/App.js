@@ -5,23 +5,31 @@ import SideNav from './main/SideNav';
 import Footer from './main/Footer';
 import Products from "./pages/Products";
 import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
 
 function App() {
   const [CategoryId, setCategoryId] = useState(1);
   const [categorySelected, setCategorySelected] = useState(categories.filter(category => category.id === 1));
-  
+  const [buyedProducts, setBuyedProducts] = useState([]);
+
   function getCategoryId(id)
   {
     setCategoryId(id);
     setCategorySelected(categories.filter(category => category.id === id))
   }
 
+  function addBuy(products)
+  {
+    setBuyedProducts(buyedProducts => [...buyedProducts, products]);
+    console.log("products %o", buyedProducts)
+  }
+  
   return (
     <div className={styles.application}>
       <Router>
         <Header title={categorySelected.map(x => x.CategoryName)}></Header>
         <SideNav links={categories} click={getCategoryId}></SideNav>
-        <Products CategoryId={CategoryId}></Products>
+        <Products CategoryId={CategoryId} addBuy={addBuy}></Products>
         <Footer></Footer>
       </Router>
     </div>
