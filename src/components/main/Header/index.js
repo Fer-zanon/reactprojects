@@ -6,13 +6,13 @@ import { Link } from "react-router-dom"
 
 library.add(faShoppingCart);
 
-export default function Header({title, qtyProducts})
+export default function Header({title, qtyProducts, click})
 {
     return(
         <header>
             <h1>{title}</h1>
             <div>
-            <Link to="cart">
+            <Link to="cart" onClick={() => click("Cart")}>
                 <FontAwesomeIcon icon="shopping-cart" />
                 <span>{qtyProducts}</span>
             </Link>

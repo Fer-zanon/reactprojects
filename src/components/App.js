@@ -8,12 +8,13 @@ import { useState } from "react";
 import Carry from "./pages/Carry";
 
 function App() {
-  const [categorySelected, setCategorySelected] = useState(categories.filter(category => category.id === 1));
-  const [boughtProducts, setBoughtProducts] = useState([]);
 
-  function getCategoryId(id)
+  const [boughtProducts, setBoughtProducts] = useState([]);
+  const [headerTitle, setHeaderTitle] = useState("Pick a Category");
+
+  function AddTitle(title)
   {
-    setCategorySelected(categories.filter(category => category.id === id))
+    setHeaderTitle(title);
   }
 
   function addBuy(products)
@@ -36,12 +37,12 @@ function App() {
   return (
     <div className={styles.application}>
       <Router>
-        <Header title={categorySelected.map(x => x.CategoryName)} qtyProducts={boughtProducts.length}></Header>
-        <SideNav links={categories} click={getCategoryId}/>
+        <Header title={headerTitle} qtyProducts={boughtProducts.length} click={AddTitle}></Header>
+        <SideNav links={categories} click={AddTitle}/>
         <Switch>
-          <Route path="/Consoles" component={() => <Products CategoryId={1} addBuy={addBuy}/>}/>
-          <Route path="/Accesories" component={() => <Products CategoryId={2} addBuy={addBuy}/>}/>
-          <Route path="/Hardware" component={() => <Products CategoryId={3} addBuy={addBuy}/>}/>
+          <Route path="/Consoles" component={() => <Products CategoryId={1} addBuy={addBuy} />}/>
+          <Route path="/Accesories" component={() => <Products CategoryId={2} addBuy={addBuy} />}/>
+          <Route path="/Hardware" component={() => <Products CategoryId={3} addBuy={addBuy} />}/>
           <Route path="/Cart" component={() => <Carry products={boughtProducts}/>} />
         </Switch>
         <Footer></Footer>
