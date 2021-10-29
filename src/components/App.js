@@ -11,6 +11,7 @@ function App() {
 
   const [boughtProducts, setBoughtProducts] = useState([]);
   const [headerTitle, setHeaderTitle] = useState("Pick a Category");
+  const [qtyProducts, setQtyProducts] = useState(0);
 
   function AddTitle(title)
   {
@@ -32,12 +33,13 @@ function App() {
     {
       setBoughtProducts(boughtProducts => [...boughtProducts, {product: products.name, quantity: 1}]);
     }
+    setQtyProducts(qtyProducts + 1);
   }
 
   return (
     <div className={styles.application}>
       <Router>
-        <Header title={headerTitle} qtyProducts={boughtProducts.length} click={AddTitle}></Header>
+        <Header title={headerTitle} qtyProducts={qtyProducts} click={AddTitle}></Header>
         <SideNav links={categories} click={AddTitle}/>
         <Switch>
           <Route path="/Consoles" component={() => <Products CategoryId={1} addBuy={addBuy} />}/>
